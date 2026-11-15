@@ -1,4 +1,4 @@
-name: ANOTA PWA Audit
+name: AGENDA RX PWA Audit
 
 on:
   push:
@@ -64,14 +64,14 @@ jobs:
           grep -qi 'name="apple-mobile-web-app-capable"' index.html
           grep -qi 'rel="manifest" href="manifest.webmanifest"' index.html
           grep -q "location.protocol==='https:'||location.hostname==='localhost'" index.html
-          grep -q "serviceWorker.register('sw.js?v=rbs-executive-os-shell-v4-png-private-vary-range-safe'" index.html
+          grep -q "serviceWorker.register('sw.js?v=rbs-executive-os-shell-v5-agenda-rx'" index.html
           grep -q "updateViaCache:'none'" index.html
 
       - name: Validate safe service worker policy
         run: |
           set -euo pipefail
           grep -q "CACHE_PREFIX" sw.js
-          grep -q "CACHE_NAME = .*v4-png-private-vary-range-safe" sw.js
+          grep -q "CACHE_NAME = .*v5-agenda-rx" sw.js
           grep -q "authorization" sw.js
           grep -q "cookie" sw.js
           grep -q "range" sw.js
