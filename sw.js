@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'rbs-executive-os-shell-';
-const CACHE_NAME = `${CACHE_PREFIX}v4-png-private-vary-range-safe`;
+const CACHE_NAME = `${CACHE_PREFIX}v5-agenda-rx`;
 const OFFLINE = './index.html';
 const SHELL = [
   './',
@@ -52,7 +52,7 @@ function responseIsPrivate(response) {
 function isPublicShellRequest(request, url) {
   if (request.method !== 'GET' || url.origin !== self.location.origin) return false;
   if (hasSensitiveRequestHeaders(request) || hasSensitiveQuery(url) || url.search) return false;
-  const relative = `.${url.pathname.replace('/ANOTA-ES-RBS', '') || '/'}`;
+  const relative = `.${url.pathname.replace('/AGENDA-RX', '') || '/'}`;
   return SHELL.includes(relative) || (relative === './' && SHELL.includes('./'));
 }
 
@@ -63,7 +63,7 @@ async function precacheShell() {
       const response = await fetch(asset, { cache: 'no-store', credentials: 'omit', redirect: 'error' });
       if (!responseIsPrivate(response)) await cache.put(asset, response.clone());
     } catch (error) {
-      console.warn('RBS Executive OS precache skipped:', asset, error);
+      console.warn('AGENDA RX precache skipped:', asset, error);
     }
   }));
 }
